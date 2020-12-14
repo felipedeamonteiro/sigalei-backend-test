@@ -14,9 +14,6 @@ class Users {
   @Column()
   name: string;
 
-  @Column()
-  email: string;
-
   @CreateDateColumn()
   created_at: Date;
 
