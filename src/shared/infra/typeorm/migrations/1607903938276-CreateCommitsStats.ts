@@ -1,11 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateUsers1607737508389 implements MigrationInterface {
+export default class CreateCommitsStats1607903938276
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'commitsStats',
         columns: [
           {
             name: 'id',
@@ -15,8 +16,20 @@ export default class CreateUsers1607737508389 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
-            type: 'varchar',
+            name: 'user_id',
+            type: 'uuid',
+          },
+          {
+            name: 'lines_added',
+            type: 'int',
+          },
+          {
+            name: 'lines_removed',
+            type: 'int',
+          },
+          {
+            name: 'date',
+            type: 'timestamp',
           },
           {
             name: 'created_at',
@@ -29,11 +42,21 @@ export default class CreateUsers1607737508389 implements MigrationInterface {
             default: 'now()',
           },
         ],
+        foreignKeys: [
+          {
+            name: 'UserCommit',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['user_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('commitsStats');
   }
 }
