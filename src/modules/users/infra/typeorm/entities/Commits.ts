@@ -16,9 +16,6 @@ class CommitsStats {
   id: string;
 
   @Column()
-  oid: string;
-
-  @Column()
   user_id: string;
 
   @ManyToOne(() => User)

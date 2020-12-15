@@ -37,7 +37,6 @@ class GetUsersInLinuxRepoService {
                       login
                     }
                   }
-                  committedDate
                   additions
                   deletions
                 }
