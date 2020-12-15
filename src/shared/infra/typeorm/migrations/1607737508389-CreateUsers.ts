@@ -19,6 +19,18 @@ export default class CreateUsers1607737508389 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'commits',
+            type: 'int',
+          },
+          {
+            name: 'lines_added',
+            type: 'int',
+          },
+          {
+            name: 'lines_removed',
+            type: 'int',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

@@ -16,10 +16,6 @@ export default class CreateCommitsStats1607903938276
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'oid',
-            type: 'varchar',
-          },
-          {
             name: 'user_id',
             type: 'uuid',
           },

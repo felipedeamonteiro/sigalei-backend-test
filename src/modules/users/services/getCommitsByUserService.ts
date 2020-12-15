@@ -13,7 +13,7 @@ import IUsersRepository from '../repositories/IUsersRepository';
  */
 
 @injectable()
-class GetUsersInLinuxRepoService {
+class GetCommitsByUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -32,6 +32,7 @@ class GetUsersInLinuxRepoService {
               history(first: 100, since: "2020-01-01T00:00:00Z" ) {
                 totalCount
                 nodes {
+                  messageHeadline
                   author {
                     user {
                       login
@@ -75,4 +76,4 @@ class GetUsersInLinuxRepoService {
   }
 }
 
-export default GetUsersInLinuxRepoService;
+export default GetCommitsByUserService;
