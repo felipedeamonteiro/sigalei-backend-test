@@ -61,8 +61,11 @@ class GetCommitsByUserService {
     //   .nodes;
 
     // const parsedData: any = await parseData(usersData);
+    const totalCommits = JSON.parse(results).data.repository.object.history
+      .totalCount;
 
-    return JSON.parse(results).data.repository.object.history;
+    const commitsData = JSON.parse(results).data.repository.object.history
+      .nodes;
 
     // const checkUserExists = await this.usersRepository.findByName(name);
 
@@ -72,7 +75,7 @@ class GetCommitsByUserService {
 
     // const user = await this.usersRepository.createUser({ name });
 
-    // return user;
+    return commitsData;
   }
 }
 

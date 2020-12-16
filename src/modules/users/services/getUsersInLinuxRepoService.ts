@@ -48,8 +48,6 @@ class GetUsersInLinuxRepoService {
         Authorization: `Bearer ${process.env.GITHUB_API_ACCESS_TOKEN}`,
       },
     }).then(res => res.text());
-    // .then(body => console.log('body', body))
-    // .catch(err => console.error(err));
 
     const usersData: any[] = JSON.parse(results).data.repository.object.history
       .nodes;

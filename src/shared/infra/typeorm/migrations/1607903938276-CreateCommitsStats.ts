@@ -16,8 +16,8 @@ export default class CreateCommitsStats1607903938276
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'user_id',
-            type: 'uuid',
+            name: 'user_login',
+            type: 'varchar',
           },
           {
             name: 'lines_added',
@@ -40,16 +40,6 @@ export default class CreateCommitsStats1607903938276
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
-          },
-        ],
-        foreignKeys: [
-          {
-            name: 'UserCommit',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
           },
         ],
       }),

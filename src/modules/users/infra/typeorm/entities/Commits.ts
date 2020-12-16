@@ -4,11 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
-
-import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('commitsStats')
 class CommitsStats {
@@ -16,11 +12,7 @@ class CommitsStats {
   id: string;
 
   @Column()
-  user_id: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  user_login: string;
 
   @Column()
   lines_added: number;
