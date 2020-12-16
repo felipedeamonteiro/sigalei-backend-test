@@ -12,6 +12,9 @@ class CommitsStats {
   id: string;
 
   @Column()
+  oid: string;
+
+  @Column()
   user_login: string;
 
   @Column()

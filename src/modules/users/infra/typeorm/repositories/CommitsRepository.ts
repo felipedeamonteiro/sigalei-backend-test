@@ -12,18 +12,26 @@ class CommitsRepository implements ICommitsRepository {
     this.ormRepository = getRepository(Commits);
   }
 
-  public async findByUserName(name: string): Promise<Commits | undefined> {
-    const user = await this.ormRepository.findOne({
+  public async findByUserName(name: string): Promise<Commits[] | undefined> {
+    const userCommits = await this.ormRepository.find({
       where: { name },
     });
 
-    return user;
+    return userCommits;
   }
 
   public async createCommit(commitData: ICreateCommitsDTO): Promise<Commits> {
     const commit = this.ormRepository.create(commitData);
 
-    await this.ormRepository.save(commit);
+    const dataExists = await this.ormRepository.findOne({
+      where: { oid: commitData.oid },
+    });
+
+    if (dataExists) {
+      await this.ormRepository.update(commit, new Commits());
+    } else {
+      await this.ormRepository.save(commit);
+    }
 
     return commit;
   }
