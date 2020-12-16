@@ -112,12 +112,10 @@ export const parseData = async (
 ) => {
   const { node: parseddata }: INode = { node: [] };
   edges.forEach(el => {
-    console.log('el', el);
     if (el) {
       parseddata.push(el);
     }
   });
-  console.log('parseddata', parseddata);
 
   const ranking: IHash<Array<number>> = createRanking({ node: parseddata });
   const array1 = sortHashBy(

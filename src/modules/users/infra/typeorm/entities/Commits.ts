@@ -23,10 +23,10 @@ class CommitsStats {
   user: User;
 
   @Column()
-  lines_added: string;
+  lines_added: number;
 
   @Column()
-  lines_removed: string;
+  lines_removed: number;
 
   @Column()
   date: Date;

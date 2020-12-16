@@ -1,8 +1,8 @@
 import Commits from '../infra/typeorm/entities/Commits';
-import ICreateUserDTO from '../dtos/ICreateUserDTO';
+import ICreateCommitsDTO from '../dtos/ICreateCommitsDTO';
 
-export default interface IUserRepository {
-  createCommit(data: ICreateUserDTO): Promise<Commits>;
+export default interface ICommitsRepository {
+  createCommit(data: ICreateCommitsDTO): Promise<Commits>;
   saveCommit(commits: Commits): Promise<Commits>;
-  findByCommit(name: string): Promise<Commits | undefined>;
+  findByUserName(name: string): Promise<Commits | undefined>;
 }

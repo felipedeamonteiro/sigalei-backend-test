@@ -8,10 +8,6 @@ import { parseData } from '@shared/utils';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 
-/**
- * Interface representing the graphql query node
- */
-
 @injectable()
 class GetUsersInLinuxRepoService {
   constructor(
@@ -58,19 +54,18 @@ class GetUsersInLinuxRepoService {
     const usersData: any[] = JSON.parse(results).data.repository.object.history
       .nodes;
 
-    const parsedData: any = await parseData(usersData);
+    const users: any = await parseData(usersData);
 
-    return parsedData;
+    users.byCommits.map(async (userDataByCommits: any) => {
+      await this.usersRepository.createUser({
+        name: userDataByCommits[0],
+        commits: userDataByCommits[1],
+        lines_added: userDataByCommits[2],
+        lines_removed: userDataByCommits[3],
+      });
+    });
 
-    // const checkUserExists = await this.usersRepository.findByName(name);
-
-    // if (checkUserExists) {
-    //   return undefined;
-    // }
-
-    // const user = await this.usersRepository.createUser({ name });
-
-    // return user;
+    return users;
   }
 }
 

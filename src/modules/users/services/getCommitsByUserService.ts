@@ -1,25 +1,25 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable prefer-const */
-import { injectable, inject } from 'tsyringe';
+// import { injectable, inject } from 'tsyringe';
 
 import fetch from 'node-fetch';
-import { parseData } from '@shared/utils';
-import User from '../infra/typeorm/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
+// import { parseData } from '@shared/utils';
+// import Commits from '../infra/typeorm/entities/Commits';
+// import ICommitsRepository from '../repositories/ICommitsRepository';
 
 /**
  * Interface representing the graphql query node
  */
 
-@injectable()
+// @injectable()
 class GetCommitsByUserService {
-  constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-  ) {}
+  constructor() {}
 
-  public async execute(): Promise<User[]> {
+  // @inject('CommitsRepository')
+  //   private commitsRepository: ICommitsRepository,
+
+  public async execute(): Promise<any> {
     const graphQLQuery = `
       query {
         repository(name:"linux" owner:"torvalds"){
@@ -57,12 +57,12 @@ class GetCommitsByUserService {
     // .then(body => console.log('body', body))
     // .catch(err => console.error(err));
 
-    const usersData: any[] = JSON.parse(results).data.repository.object.history
-      .nodes;
+    // const usersData: any[] = JSON.parse(results).data.repository.object.history
+    //   .nodes;
 
-    const parsedData: any = await parseData(usersData);
+    // const parsedData: any = await parseData(usersData);
 
-    return parsedData;
+    return JSON.parse(results).data.repository.object.history;
 
     // const checkUserExists = await this.usersRepository.findByName(name);
 
